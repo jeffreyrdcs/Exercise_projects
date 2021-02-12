@@ -12,6 +12,7 @@ formatter = logging.Formatter('%(name)s/%(levelname)s - %(message)s')
 ch.setFormatter(formatter)
 rddb_logger.addHandler(ch)
 
+create_new_db()
 
 
 def create_new_db(config_dir_path, db_dir_path, existing_db_list=[]):

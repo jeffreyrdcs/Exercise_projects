@@ -72,8 +72,8 @@ def display_entry(in_col_names, in_result, truncate_data=True):
     """
         Display entry on screen
     """
-    hori_line = ('+'+'-'*15) * (len(in_col_names)) +'+'
-    row_format ="{:>15}|" * (len(in_col_names))
+    hori_line = ('+'+'-'*20) * (len(in_col_names)) +'+'
+    row_format ="{:>20}|" * (len(in_col_names))
     row_col_line = "|"+row_format.format(*in_col_names)       #*list to unpack
     print('')
     print(hori_line)
@@ -87,7 +87,7 @@ def display_entry(in_col_names, in_result, truncate_data=True):
                 if isinstance(item, str):   # Check if it is a string
 
                     # Truncate the text if it is longer than 11 char
-                    trun_row_list.append(  (item[:11] + '...') if len(item) > 11 else item )
+                    trun_row_list.append(  (item[:16] + '...') if len(item) > 16 else item )
                 else:
                     trun_row_list.append(item)
             print("|"+ row_format.format(*trun_row_list))
@@ -96,4 +96,5 @@ def display_entry(in_col_names, in_result, truncate_data=True):
 
     print(hori_line)
     print('')
+
 

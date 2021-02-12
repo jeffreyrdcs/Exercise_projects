@@ -38,11 +38,11 @@ if __name__ == '__main__':
     print('##############################################')
     
     # If add new DB flag is on, add new DB here
-    
+    # Write all the argparse arguments later here
     
     # Check if database exist and return an available list for login
     db_avail_list = []
-    
+
     while len(db_avail_list) == 0:
         db_list = rdutils.scan_db_dir(db_path)
         
@@ -69,4 +69,4 @@ if __name__ == '__main__':
     if rddb.login_db(sel_db_name):
         rdmenu.load_menu_command()
 
-
+if __name__ == '__main__2'
