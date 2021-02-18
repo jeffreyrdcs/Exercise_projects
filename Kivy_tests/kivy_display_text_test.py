@@ -16,8 +16,8 @@ Window.size = wininit
 
 class LoginScreen(BoxLayout):
 
-	test_font_size = NumericProperty(40)
-	base_font_size = NumericProperty(40)
+	fin_font_scale_fac = NumericProperty(1)
+	base_font_scale_fac = NumericProperty(1)
 
 	def __init__(self, *args):
 		super(LoginScreen, self).__init__()
@@ -56,19 +56,21 @@ class LoginScreen(BoxLayout):
 			# Check if the window pixel dimensions suddenly changes (in my retina display it is 2x less when move to external) 
 			if self.window_pixel_dim_safe == multiply_list(window_current_pixel_dim, 2):
 				print('Resizing font for External Display')
+				self.base_font_scale_fac = 0.5
 				self.display_num = 1
 
 			# Check if the window pixel dimensions suddenly changes (in my retina display it is 2x more when move to retina) 				
 			elif self.window_pixel_dim_safe == multiply_list(window_current_pixel_dim, 0.5):
 				print('Resizing font for Retina Display')
+				self.base_font_scale_fac = 1
 				self.display_num = 0
 
 			# Update the font_size, x,y change should be identical
 			scale_fac = window_current_pixel_dim[0]/self.window_pixel_dim_safe[0]
-			self.test_font_size = self.test_font_size * scale_fac
+			self.fin_font_scale_fac = self.fin_font_scale_fac * scale_fac
 
-			# Save it to base_font for font resizing when window size changes
-			self.base_font_size = self.test_font_size
+			# Save it to base_font for font resizing when window size changes (This is wrong, will make the font not resizeable after switching display)
+			#self.base_font_size = self.test_font_size
 
 			# Saved the current window pixel dimensions
 			self.window_pixel_dim_safe = window_current_pixel_dim
@@ -83,7 +85,7 @@ class LoginScreen(BoxLayout):
 			elif self.display_num == 1:
 				scale_fac_display = 1
 			scale_fac = min(window_current_pixel_dim[0]/(scale_fac_display * self.window_width_min), window_current_pixel_dim[1]/(scale_fac_display * self.window_height_min))
-			self.test_font_size = self.base_font_size * scale_fac
+			self.fin_font_scale_fac = self.base_font_scale_fac * scale_fac
 			print(f'Scale fac {scale_fac}')
 			self.window_pixel_dim_safe = window_current_pixel_dim
 			self.window_size_safe = Window._get_system_size()
