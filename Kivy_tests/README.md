@@ -1,7 +1,7 @@
-Kivy tests
+Kivy tests 
 =========================================
 
-This directory contains various tests that I did to explore some of the Kivy behaviour / issues.
+This directory contains various tests that I did to explore some of the Kivy behaviour / issues. Useful snippets are also kept here.
 
 kivy_display_text_test.py:
 - I encountered an issue that once you drag the app across multiple display, the app font size will increase relative to the screen size when I move the window from my internal retina display to an external one.
