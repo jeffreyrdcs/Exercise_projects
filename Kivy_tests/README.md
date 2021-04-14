@@ -16,3 +16,6 @@ kivy_var_access_test.py:
 - I encountered some issues because self.ids does not include widgets that are added dynamically with python. Only those defined in the kv files are included.
 - This test includes an example on how to use self.children, self.walk, and also how to use weakref to modify self.ids.
 
+kivy_click_drag_test.py:
+- This is a snippet showing how to distinguish between a click and a drag (or a swipe) on a label
+
