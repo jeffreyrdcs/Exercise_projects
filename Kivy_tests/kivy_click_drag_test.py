@@ -1,5 +1,5 @@
 #
-#  A simple test showing how to distinugish between click and drag on a label
+#  A simple test showing how to distinugish between click, drag on a label, and mouse scrolling
 #
 
 from kivy.app import App
@@ -97,10 +97,13 @@ class ClickLabel(Label):        # Not using a button since it will be easier to 
         # Change back to default color
         self.highlight_color = [0.5,0.75,0.5,0.6]
 
-        # if self.is_touch_down == False and self.collide_point(*touch.pos):
-        #     print(' Scrolling?')
-        #     return super().on_touch_up(touch)
-        if self.is_touch_down == True and self.collide_point(*touch.pos):
+
+        if touch.is_mouse_scrolling:
+            # Scrolling
+            print(f' Scroll: {touch.x} , {self.mouse_dpos[0]}')
+            self.parent.display_text = 'Scrolling'
+            return super().on_touch_up(touch)
+        elif self.is_touch_down == True and self.collide_point(*touch.pos):
             self.activate_item_up = self.text
 
             if abs(touch.x - self.mouse_dpos[0]) > self.drag_threshold or abs(touch.y - self.mouse_dpos[1]) > self.drag_threshold:
