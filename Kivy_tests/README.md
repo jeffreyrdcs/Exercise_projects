@@ -17,5 +17,5 @@ kivy_var_access_test.py:
 - This test includes an example on how to use self.children, self.walk, and also how to use weakref to modify self.ids.
 
 kivy_click_drag_test.py:
-- This is a snippet showing how to distinguish between a click and a drag (or a swipe) on a label
+- This is a snippet showing how to distinguish between a click, a drag (or a swipe) on a label, and mouse scrolling.
 
