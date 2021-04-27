@@ -10,6 +10,65 @@ from kivy.uix.button import Button
 from kivy.properties import NumericProperty
 from kivy.metrics import dp, sp
 from kivy.core.window import Window
+from kivy.lang import Builder
+
+Builder.load_string('''
+
+<LoginScreen>
+	canvas.before:
+		Color: 
+			rgba: [1., 1., 1., 1]
+		Rectangle:
+			pos: self.pos
+			size: self.size
+
+	orientation: "vertical"
+	spacing: 10
+	padding: [self.width * 0.05, self.height * 0.05]      # Need to be a percentage of height/width
+
+	Label:
+		text: 'TESTING LABEL TEXT'
+		size_hint: (1, 0.3)
+		font_size: 35
+		color: [0, 0, 0, 1]
+
+	Button:
+		text: 'This is 30pt'
+		size_hint: 0.5, 0.05
+		font_size: 30
+		pos_hint: {'center_x': 0.5}
+		background_normal: ''
+		background_color: [0.906, 0.906, 0.906, 1]
+		color: [0, 0, 0, 1]
+
+	Button:
+		text: 'This is 30dp'
+		size_hint: 0.5, 0.05
+		font_size: dp(30)
+		pos_hint: {'center_x': 0.5}
+		background_normal: ''
+		background_color: [0.906, 0.906, 0.906, 1]
+		color: [0, 0, 0, 1]
+
+	Button:
+		text: 'This is 30sp'
+		size_hint: 0.5, 0.05
+		font_size: sp(30)
+		pos_hint: {'center_x': 0.5}
+		background_normal: ''
+		background_color: [0.906, 0.906, 0.906, 1]
+		color: [0, 0, 0, 1]
+
+	Button:
+		text: 'This one resizes!'
+		size_hint: (0.5, 0.05)
+		font_size: dp(root.fin_font_scale_fac * 25)
+		pos_hint: {'center_x': 0.5}
+		background_normal: ''
+		background_color: [0.906, 0.906, 0.906, 1]
+		color: [0, 0, 0, 1]
+	''')
+
 
 wininit = (450,650)
 Window.size = wininit
@@ -29,17 +88,20 @@ class LoginScreen(BoxLayout):
 		Window.bind(on_resize = self.resolution_check_update)
 
 	def resolution_check_update(self, instance, x, y):
-		#Properties that I found:
-		#0. I notice that in retina display the actual height and width in pixel is actually a multiple of the window.size (?)
-		#1. Moving the window to an external display doesn't change get_system_size().
-		#2. Rescaling the window changes system.size instantly.
-		#3. on_resize gets triggered on both resizing the screen and switching displays.
-		#4. During initization, self.height and self.width gives 1600, 1200, but x, y give correct sizes (Don't understand why).
-		#5. The self.height and self.width values lag. It only gets set AFTER we finish resizing the window and confirm the size.
-		#6. Looking through the code I discovered that there is this x,y that return from on_resize, which seems to be the instanteous size that get updated faster than height,width
-		# get_system_size = Window._get_system_size()
-		# selfheightwidth = [int(self.width), int(self.height)]
-		# print(f'Get_System_size: {get_system_size},  SelfHW: {selfheightwidth},  System_size: {Window.system_size}, X:{x}, Y:{y}')
+		'''
+		Properties that I found:
+		0. I notice that in retina display the actual height and width in pixel is actually a multiple of the window.size (?)
+		1. Moving the window to an external display doesn't change the output of get_system_size().
+		2. Rescaling the window changes system.size instantly.
+		3. on_resize gets triggered on both resizing the screen and switching displays.
+		4. During initization, self.height and self.width gives 1600, 1200, but x, y give correct sizes.
+		5. The self.height and self.width values only get set AFTER we finish resizing the window and confirm the size.
+		6. Looking through the code I discovered that there is this x,y that return from on_resize, which seems to be the instanteous size that get updated faster than height,width
+		
+		 get_system_size = Window._get_system_size()
+		 selfheightwidth = [int(self.width), int(self.height)]
+		 print(f'Get_System_size: {get_system_size},  SelfHW: {selfheightwidth},  System_size: {Window.system_size}, X:{x}, Y:{y}')
+        '''
 
 		# Initialize the values when it first launches
 		if self.window_size_safe == [0, 0]:
