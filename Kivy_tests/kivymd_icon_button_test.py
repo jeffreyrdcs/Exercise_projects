@@ -1,7 +1,7 @@
 #
-#  A simple test on how MDIconButton works
-#  It has some preset on the icon, button size, and padding
-#  which was causing some weird behaviour
+#  A simple test on how the MDIconButton works
+#  There are some presets on the icon, button size, and padding
+#  which were causing some weird behaviour
 #
 
 from kivymd.app import MDApp
