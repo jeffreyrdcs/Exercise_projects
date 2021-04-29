@@ -69,4 +69,3 @@ if __name__ == '__main__':
     if rddb.login_db(sel_db_name):
         rdmenu.load_menu_command()
 
-if __name__ == '__main__2'
